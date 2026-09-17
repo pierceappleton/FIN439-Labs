@@ -1,47 +1,83 @@
-# FIN439 Lab 08 - Palantir P/E Triangulation
+# FIN439 Lab 08 - Palantir Peer P/E Valuation
 
-Company: Palantir Technologies Inc.  
-Ticker: `PLTR`  
-Comparison date: `2026-09-10`  
-Valuation object: value per diluted share using annual reported GAAP diluted EPS and same-date stock prices.
+Company: Palantir Technologies Inc. (`PLTR`)  
+Valuation date: `2026-09-10`  
+Prior Lab 06 DCF value: `$158.1618` per diluted share  
+Observed market price from Lab 06 prompt: `$169.53`  
+Valuation object: value per diluted share using annual reported GAAP diluted EPS and same-date or nearest defensible share prices.
 
 ## Starting Peer Policy
 
-A useful peer for Palantir should be a listed operating company that sells enterprise software or data/AI platforms with recurring or durable customer relationships, meaningful commercial or government enterprise exposure, and positive annual reported diluted EPS available before the `2026-09-10` comparison date. Differences to qualify include cloud/SaaS delivery model, customer mix, growth maturity, margin structure, government exposure, and whether the company is mainly infrastructure software, analytics software, cybersecurity, or application software. Exclude companies that are not operating companies, have materially different economics, lack positive annual reported diluted EPS, report incompatible share/currency bases that cannot be reconciled, or cannot be supported by opened primary/company sources.
+A useful peer for Palantir should be a publicly listed operating company with enterprise software, data, AI, analytics, cloud platform, observability, security, or workflow economics; durable customer relationships; and positive annual reported diluted EPS available before `2026-09-10`. I exclude candidates with non-positive annual GAAP diluted EPS because a P/E multiple is not meaningful when the denominator is zero or negative. I also reject or qualify companies when the business model is too application-specific, too broad, or when the stock price and EPS basis cannot be matched.
 
-I would reject a candidate if the opened source does not support real enterprise software or data/AI overlap with Palantir, if annual diluted EPS public by `2026-09-10` cannot be verified, if the same-date price cannot be traced consistently with the target, or if the business model is too different for a P/E multiple to say anything useful.
+The candidate set requested for this lab was `SNOW`, `DDOG`, `AI`, `CRM`, and `NOW`. From that set, I selected `DDOG` and `NOW` as the two most defensible P/E peers. `SNOW` is a strong business-model candidate but fails the positive EPS screen. `AI` has the clearest enterprise AI label but also fails the positive EPS screen. `CRM` has positive EPS, but I rank it behind `DDOG` and `NOW` because it is more application/CRM-suite oriented, while Datadog and ServiceNow are closer to enterprise platform, AI, workflow, operations, security, and data infrastructure economics.
 
 ## Lab 07 Calculator Check
 
-I reran the saved Lab 07 command:
+I reran the saved Lab 07 calculator before adapting it:
 
 ```powershell
-python "..\Lab 07\lab07_comps.py"
+python "labs\lab-07\lab07_comps.py"
 ```
 
-The Asbury calculator still works. It printed AutoNation P/E of `10.037825x`, Group 1 Automotive P/E of `11.450149x`, peer median P/E of `10.743987x`, Asbury peer-implied range of `$215.81-$246.18`, and median-implied price of `$231.00`. Removing `GPI` left a single-peer reference estimate of `$215.81`.
+The Asbury calculation still works. It printed:
 
-## Target Evidence
+```text
+AN: 10.037825x
+GPI: 11.450149x
+Peer median P/E: 10.743987x
+Peer-implied range: $215.81-$246.18
+Median-implied price: $231.00
+Remove AN: remaining median-implied price $246.18; change from full-peer estimate $15.18
+Remove GPI: remaining median-implied price $215.81; change from full-peer estimate -$15.18
+```
 
-Palantir's 2025 Form 10-K, filed February 17, 2026, says the company builds software that helps organizations integrate data, decisions, and operations at scale, and describes Gotham, Foundry, Apollo, and AIP as principal platforms. The same filing reports 2025 diluted EPS of `$0.63` and diluted weighted-average shares of `2,565.197` million. Source: SEC Form 10-K, accession `0001321655-26-000011`, business section and Note 12, `https://www.sec.gov/Archives/edgar/data/1321655/000132165526000011/pltr-20251231.htm`.
+## Palantir Target Inputs
 
-For the P/E calculator I used the `2026-09-10` close of `$165.86` from FinanceCharts' PLTR historical price table. This differs from the Lab 06 reverse-DCF market price note of `$169.53`, which appears in current historical tables as the `2026-09-09` close. I kept the Lab 06 DCF value unchanged, but used the same `2026-09-10` price convention for target and peers in this Lab 08 P/E comparison. Price source: `https://www.financecharts.com/compare/PLTR/summary/price`.
+Palantir's 2025 Form 10-K, filed February 17, 2026, says Palantir builds software that helps organizations integrate data, decisions, and operations at scale and describes Gotham, Foundry, Apollo, and AIP as principal platforms. The same filing reports annual diluted EPS of `$0.63` for 2025. Source: Palantir Technologies Inc. 2025 Form 10-K, filed `2026-02-17`, `https://www.sec.gov/Archives/edgar/data/1321655/000132165526000011/pltr-20251231.htm`.
 
-## Candidate Decisions
+For consistency with the assignment target block, the calculator uses Palantir's observed market price of `$169.53`. The target price is shown for context; the peer-implied valuation is calculated by applying peer P/E multiples to Palantir's annual diluted EPS of `$0.63`.
 
-| Candidate | Business evidence | Important difference from Palantir | Annual diluted EPS public by 2026-09-10 | Price used | Decision |
-|---|---|---|---:|---:|---|
-| Microsoft (`MSFT`) | Microsoft says it develops software, services, devices, and solutions, including cloud-based solutions with AI, software, services, platforms, and content. Its 2026 Form 10-K also describes Microsoft 365 Commercial, Dynamics, Azure, GitHub, and cloud/AI services for enterprise customers. Source: Microsoft 2026 Form 10-K, Item 1 Business, `https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm`. | Much larger, more diversified, and more mature than Palantir; includes consumer, devices, gaming, LinkedIn, advertising, and hyperscale cloud infrastructure. | `$17.95`, fiscal year ended `2026-06-30`, 10-K signed/filed `2026-07-29`. | `$492.44` close on `2026-09-10`, FinanceCharts MSFT historical price table, `https://www.financecharts.com/stocks/MSFT/summary/price`. | `qualify` |
-| Salesforce (`CRM`) | Salesforce says it is a global CRM technology leader helping organizations become agentic enterprises, bringing humans, agents, applications, and data together on a trusted unified platform. It sells worldwide primarily on a subscription basis. Source: Salesforce 2026 Form 10-K, Item 1 Business, `https://www.sec.gov/Archives/edgar/data/1108524/000110852426000060/crm-20260131.htm`. | More application/CRM and customer-workflow focused than Palantir, with less direct government/intelligence exposure and a more mature SaaS subscription profile. | `$7.80`, fiscal year ended `2026-01-31`, 10-K filed `2026-03-02`. | `$243.00` close on `2026-09-10`, FinanceCharts CRM historical price table, `https://www.financecharts.com/stocks/CRM/summary/price`. | `qualify` |
+## Candidate Screen
 
-I admitted both companies only as qualified peers. They satisfy the listed operating-company, enterprise software, positive annual EPS, and traceable price tests, but neither is a clean Palantir twin.
+| Candidate | Business-model fit | Annual reported diluted EPS | Same-date / nearest price | Decision |
+|---|---|---:|---:|---|
+| Snowflake (`SNOW`) | Strong fit as an AI Data Cloud platform for consolidating data, applying AI, building data applications, and sharing data products. | `$(3.95)` for fiscal year ended `2026-01-31`; Form 10-K filed `2026-03-20`. | `$329.72` on `2026-09-10`, FinanceCharts. | `exclude`: negative GAAP diluted EPS makes P/E not meaningful. |
+| Datadog (`DDOG`) | Strong fit as an AI-powered observability and security SaaS platform for cloud applications, infrastructure monitoring, log management, cloud security, and service management. | `$0.31` Class A diluted EPS for fiscal year ended `2025-12-31`; Form 10-K filed `2026-02-18`. | `$221.72` on `2026-09-10`, Investing.com historical table. | `qualify`: selected, but tiny EPS makes the P/E very sensitive. |
+| C3.ai (`AI`) | Conceptual fit as enterprise AI application software. | `$(3.35)` GAAP net loss per share for fiscal year ended `2026-04-30`; Form 10-K filed `2026-06-24`. | `$10.47` on `2026-09-10`, Investing.com / StockAnalysis. | `exclude`: negative GAAP diluted EPS makes P/E not meaningful. |
+| Salesforce (`CRM`) | Positive-EPS enterprise software company with AI, data, applications, and subscription software economics. | `$7.80` for fiscal year ended `2026-01-31`; Form 10-K filed `2026-03-02`. | `$243.00` on `2026-09-10`, FinanceCharts. | `qualify but not selected`: positive EPS, but less close than DDOG/NOW because CRM is more front-office application-suite focused. |
+| ServiceNow (`NOW`) | Strong fit as an AI platform for enterprise workflows, connecting people, processes, and data across public and private organizations. | `$1.67` diluted EPS for fiscal year ended `2025-12-31`; Form 10-K filed `2026-01-29`. | `$131.17` on `2026-09-10`, StockAnalysis historical table. | `qualify`: selected. |
+
+Source locators:
+
+- Snowflake 2026 Form 10-K: `https://www.sec.gov/Archives/edgar/data/1640147/000164014726000008/snow-20260131.htm`; price: `https://www.financecharts.com/stocks/SNOW/summary/price`
+- Datadog 2025 Form 10-K: `https://www.sec.gov/Archives/edgar/data/1561550/000162828026008819/ddog-20251231.htm`; price: `https://www.investing.com/equities/datadog-inc-historical-data`
+- C3.ai fiscal 2026 Form 10-K: `https://www.sec.gov/Archives/edgar/data/1577526/000157752626000078/ai-20260430.htm`; price: `https://www.investing.com/equities/c3-ai-inc-historical-data`
+- Salesforce fiscal 2026 Form 10-K: `https://www.sec.gov/Archives/edgar/data/1108524/000110852426000060/crm-20260131.htm`; price: `https://www.financecharts.com/stocks/CRM/summary/price`
+- ServiceNow 2025 Form 10-K: `https://www.sec.gov/Archives/edgar/data/1373715/000137371526000007/now-20251231.htm`; price: `https://stockanalysis.com/stocks/now/history/`
+
+## Selected Peer P/E Calculations
+
+| Peer | Price | Annual diluted EPS | P/E calculation | P/E |
+|---|---:|---:|---:|---:|
+| Datadog (`DDOG`) | `$221.72` | `$0.31` | `$221.72 / $0.31` | `715.225806x` |
+| ServiceNow (`NOW`) | `$131.17` | `$1.67` | `$131.17 / $1.67` | `78.544910x` |
+| Peer median |  |  | Median of `DDOG` and `NOW` | `396.885358x` |
+
+Applied to Palantir's annual diluted EPS of `$0.63`:
+
+| Measure | Implied PLTR share value |
+|---|---:|
+| Low peer estimate: ServiceNow P/E x PLTR EPS | `$49.48` |
+| High peer estimate: Datadog P/E x PLTR EPS | `$450.59` |
+| Median peer estimate | `$250.04` |
 
 ## Calculator Output
 
-I copied and adapted the Lab 07 calculator as `lab08_palantir_comps.py`, then ran:
+I adapted the Lab 07 calculator as `labs/lab-08/lab08_palantir_comps.py` and ran:
 
 ```powershell
-python lab08_palantir_comps.py
+python "labs\lab-08\lab08_palantir_comps.py"
 ```
 
 Output:
@@ -51,66 +87,70 @@ Lab 08: Palantir P/E Comparable-Company Calculator
 ==========================================================
 Comparison inputs
 Target: Palantir Technologies (PLTR)
-  Price: $165.86
+  Price: $169.53
   Annual GAAP diluted EPS: $0.63
 Peers:
-  Microsoft (MSFT), qualified candidate peer: price $492.44, EPS $17.95
-  Salesforce (CRM), qualified candidate peer: price $243.00, EPS $7.80
+  Datadog (DDOG), qualified candidate peer: price $221.72, EPS $0.31
+  ServiceNow (NOW), qualified candidate peer: price $131.17, EPS $1.67
 
 Peer P/E calculations
-  MSFT: 27.433983x
-  CRM: 31.153846x
+  DDOG: 715.225806x
+  NOW: 78.544910x
 
 Palantir implied valuation
-  Peer median P/E: 29.293915x
-  Peer-implied range: $17.28-$19.63
-  Median-implied price: $18.46
+  Peer median P/E: 396.885358x
+  Peer-implied range: $49.48-$450.59
+  Median-implied price: $250.04
 
 Leave-one-out sensitivity
-  Remove MSFT: remaining median-implied price $19.63; change from full-peer estimate $1.17
-  Remove CRM: remaining median-implied price $17.28; change from full-peer estimate -$1.17
+  Remove DDOG: remaining median-implied price $49.48; change from full-peer estimate -$200.55
+  Remove NOW: remaining median-implied price $450.59; change from full-peer estimate $200.55
 ```
 
-The peer P/E result is dramatically below Palantir's own `2026-09-10` market price because Palantir's annual GAAP EPS is still small relative to its price. The result does not mean Microsoft or Salesforce are perfect peers; it shows that mature profitable enterprise software P/E multiples do not support Palantir's current price when applied to Palantir's latest annual diluted EPS.
+## Hand Check
 
-## Validation
+Manual check for ServiceNow:
 
-Hand check for Salesforce:
+`$131.17 / $1.67 = 78.544910x`
 
-`$243.00 / $7.80 = 31.153846x`, matching the calculator's `CRM` P/E.
+Then applying that single-peer multiple to Palantir:
 
-Before reading the leave-one-out output, I expected removing Salesforce to lower the reference estimate because Salesforce has the higher peer P/E. The calculator confirms this: removing `CRM` leaves Microsoft only and drops the estimate to `$17.28`, a change of `-$1.17` from the full two-peer median. Removing Microsoft leaves Salesforce only and raises the estimate to `$19.63`, a change of `$1.17`.
+`78.544910 x $0.63 = $49.48`
+
+This matches the calculator's `NOW` P/E and the leave-one-out result when Datadog is removed.
+
+## Leave-One-Out Test
+
+Before running the leave-one-out test, I expected removing Datadog to collapse the estimate because Datadog has a very high P/E caused by small positive GAAP EPS. The calculator confirms this: removing `DDOG` leaves only ServiceNow and drops the estimate from `$250.04` to `$49.48`, a change of `-$200.55`.
+
+Removing `NOW` leaves only Datadog and raises the estimate from `$250.04` to `$450.59`, a change of `$200.55`. This is the key sensitivity result: the peer-implied median is not stable because the two admitted peers have very different GAAP EPS maturity.
+
+## Skeptical AI Review Checked Against Sources
+
+| Check | Result | Source-tied judgment |
+|---|---|---|
+| Company fit | `accept limitation` | Datadog and ServiceNow are defensible enterprise software / AI platform peers, but neither is a perfect Palantir match. Datadog is observability/security for cloud applications; ServiceNow is workflow automation and AI governance across enterprise processes. Palantir is data/operations software with heavy government exposure. |
+| Date match | `accept` | Peer prices use `2026-09-10` historical closes. The target market price is the assignment's observed `$169.53`; it is used for comparison, not to calculate peer-implied value. |
+| Valuation object | `accept` | The calculator estimates value per diluted share by multiplying Palantir diluted EPS by peer P/E. It does not value enterprise value and does not bridge cash or debt. |
+| Earnings definition | `accept with DDOG caveat` | The inputs are annual reported GAAP diluted EPS. Datadog reports Class A diluted EPS of `$0.31` and Class B diluted EPS of `$0.32`; I use Class A because the public quote is for Class A stock. |
+| Non-positive EPS failure modes | `accept` | Snowflake and C3.ai are excluded even though they have business-model relevance, because their annual GAAP diluted EPS is negative. Using them would create non-meaningful P/E multiples. |
+| Weakest assumption | `unresolved` | The biggest weakness is treating Datadog's high P/E as transferable to Palantir. Datadog's multiple is mechanically large because annual GAAP EPS is small, so the peer range is wide and should be interpreted as a sensitivity warning, not a precise target. |
+
+One question that could change the decision: can Palantir demonstrate enough annual GAAP EPS expansion that a peer P/E comparison no longer depends on a small-denominator, high-multiple peer like Datadog?
 
 ## DCF Comparison
 
 | Method | Palantir result and date | Main assumption or limitation |
 |---|---|---|
 | Week 3 / Lab 06 DCF | `$158.1618` per diluted share on `2026-09-10` | Forecast FCFF growth path, WACC, terminal growth, and terminal value dependence |
-| Peer P/E | `$17.28-$19.63` peer-implied range, with `$18.46` median-implied price using `2026-09-10` prices and latest annual GAAP diluted EPS | Peer choices are only qualified, not exact; P/E penalizes Palantir because annual GAAP EPS lags the market's expected growth; same-date price source differs from the Lab 06 price note |
+| Peer P/E | `$49.48-$450.59` peer-implied range, with `$250.04` median-implied price using selected peers and annual reported diluted EPS | Peer selection, same-date prices, annual GAAP EPS basis, and the instability created by Datadog's small positive EPS |
 
-I do not average these methods. The DCF capitalizes a forward FCFF growth path, while the P/E comparison applies mature profitable software multiples to reported annual diluted EPS. The large gap is the main point of the triangulation.
+The DCF and peer P/E do not converge cleanly. The DCF value of `$158.1618` is below the assignment market price of `$169.53`. The P/E median of `$250.04` is above both, but the range is so wide that the median is not strong standalone evidence. ServiceNow alone implies only `$49.48`, while Datadog alone implies `$450.59`.
 
-## AI Criticism Checked Against Sources
+I would not mechanically average the DCF and P/E outputs. The DCF is a forward-looking FCFF model. The P/E method is a market multiple applied to current annual GAAP diluted EPS. In this lab, the P/E method mainly shows that the conclusion is highly sensitive to which profitable enterprise software peer is admitted and how mature that peer's GAAP earnings base is.
 
-Prompt used:
-
-> Review my valuation comparison as a skeptical colleague. Identify the weakest supported assumption and any mismatch in company, date, valuation object or earnings definition. Do not invent a missing range or average the methods. Ask one question that could change my decision. I will check your criticism against my sources before revising my call.
-
-| Criticism | Judgment | Source-checked reason |
-|---|---|---|
-| The weakest supported assumption is that Microsoft and Salesforce are close enough peers for Palantir. | `accept` | Their SEC business descriptions support enterprise software and AI/data overlap, but the filings also show much broader, more mature platforms than Palantir. That is why both are marked `qualify`, not clean `use`. |
-| There is a date mismatch because Lab 06 recorded `$169.53` for PLTR on `2026-09-10`, while the P/E table uses `$165.86`. | `accept` | FinanceCharts and StockAnalysis show `$165.86` for `2026-09-10` and `$169.53` for `2026-09-09`; I therefore use one consistent `2026-09-10` price source for Lab 08 and preserve the Lab 06 DCF value separately. |
-| The earnings definition may be too backward-looking for a company whose price reflects expected AI growth. | `accept` | The calculator intentionally uses annual reported GAAP diluted EPS. Palantir's 2025 10-K reports positive diluted EPS of `$0.63`, but that base is small relative to the stock price. A forward EPS method would be a different assignment. |
-| One question that could change the decision: can Palantir convert AIP demand into annual GAAP EPS fast enough to make its own P/E converge toward qualified peer multiples? | `unresolved` | The current opened sources prove strong business momentum and positive EPS, but they do not prove a multi-year GAAP EPS path sufficient to bridge the gap. Future annual filings and guidance would resolve it. |
-
-## Final Reflection And Call
-
-Microsoft and Salesforce were admitted as qualified peers because opened SEC filings support enterprise software, cloud, data, AI, and durable customer relationships, and both had positive annual diluted EPS public before `2026-09-10`. They remain qualified rather than clean peers because Microsoft is far more diversified and Salesforce is more CRM/application-SaaS focused, while Palantir has a distinct data/operations platform and government heritage.
-
-The peer comparison adds valuation discipline to the DCF. The DCF can support a much higher value only by forecasting very high FCFF growth and accepting terminal-value dependence. The P/E method asks what Palantir would be worth if reported annual EPS were valued like mature profitable enterprise software peers, and that answer is far below both the DCF and the market price.
-
-The two methods differ because they use different valuation objects: forward FCFF potential versus current annual GAAP diluted EPS. The result is not cleanly comparable as an average, but it is comparable as a warning. Current reported EPS does not defend the stock price at qualified peer P/E multiples.
+## Final Call
 
 Final call: `watch-defer`.
 
-I withhold an initiate call. The defensible P/E range from the admitted peer set is `$17.28-$19.63`, but I would not use it as a standalone price target because the peers are only qualified and the method is backward-looking for Palantir. Evidence that would change the decision would include sourced proof that Palantir can grow GAAP diluted EPS and free cash flow fast enough for the DCF growth path to become less speculative, or a market price falling below the Lab 06 base-case value of about `$158` while operating momentum remains intact.
+I do not change the prior call because the peer evidence is informative but not stable enough to override the DCF. Datadog and ServiceNow are the best two candidates from the requested list after applying the positive EPS screen, but their multiples produce a very wide implied range. I would become more constructive if Palantir's reported GAAP diluted EPS grows enough that the peer P/E result becomes less dependent on high-multiple, small-denominator peers, or if the market price falls below the Lab 06 DCF value while operating evidence remains strong.

@@ -12,24 +12,24 @@ TARGET = {
     "ticker": "PLTR",
     "name": "Palantir Technologies",
     "role": "target",
-    "price": 165.86,
+    "price": 169.53,
     "eps": 0.63,
 }
 
 PEERS = [
     {
-        "ticker": "MSFT",
-        "name": "Microsoft",
+        "ticker": "DDOG",
+        "name": "Datadog",
         "role": "qualified candidate peer",
-        "price": 492.44,
-        "eps": 17.95,
+        "price": 221.72,
+        "eps": 0.31,
     },
     {
-        "ticker": "CRM",
-        "name": "Salesforce",
+        "ticker": "NOW",
+        "name": "ServiceNow",
         "role": "qualified candidate peer",
-        "price": 243.00,
-        "eps": 7.80,
+        "price": 131.17,
+        "eps": 1.67,
     },
 ]
 
