@@ -201,12 +201,12 @@ For your Palantir project, save the lesson:
 
 Local files already created:
 
-- `Project1_EditionA_Palantir.md`
-- `Lab04_Company_Research_Report_Palantir.md`
-- `sources.md`
-- `Lab 05/Lab05_Palantir_Context.md`
-- `Lab 06/lab06_dcf.md`
-- `Lab 06/dcf.py`
+- `labs/lab-03/Project1_EditionA_Palantir.md`
+- `labs/lab-04/Lab04_Company_Research_Report_Palantir.md`
+- `labs/lab-04/sources.md`
+- `labs/lab-05/Lab05_Palantir_Context.md`
+- `labs/lab-06/lab06_dcf.md`
+- `labs/lab-06/dcf.py`
 
 Core sources already identified:
 

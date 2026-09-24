@@ -85,5 +85,5 @@ It is -61.4 because forcing 2026 cash to 40.4 removes the 2026 increase in cash,
 
 ## Files
 
-- [proforma.py](https://github.com/pierceappleton/FIN439-Labs/blob/main/lab%2009/proforma.py)
-- [lab-09-writeup.md](https://github.com/pierceappleton/FIN439-Labs/blob/main/lab%2009/lab-09-writeup.md)
+- [proforma.py](https://github.com/pierceappleton/FIN439-Labs/blob/main/labs/lab-09/proforma.py)
+- [lab-09-writeup.md](https://github.com/pierceappleton/FIN439-Labs/blob/main/labs/lab-09/lab-09-writeup.md)

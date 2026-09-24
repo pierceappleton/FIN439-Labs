@@ -102,10 +102,10 @@ Useful next steps:
 
 Relevant local files reviewed:
 
-- `Project1_EditionA_Palantir.md`
-- `Lab04_Company_Research_Report_Palantir.md`
-- `PLTR-research/Palantir_2026-09-03_report.md`
-- `PLTR-research/sources.md`
+- `labs/lab-03/Project1_EditionA_Palantir.md`
+- `labs/lab-04/Lab04_Company_Research_Report_Palantir.md`
+- `research/pltr/Palantir_2026-09-03_report.md`
+- `research/pltr/sources.md`
 
 Core external sources already identified in the FIN439 materials:
 
