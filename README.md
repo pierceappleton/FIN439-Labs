@@ -12,5 +12,6 @@ Lab work for FIN439 at Purdue University, Fall 2026.
 | 08 | Palantir (PLTR) | Peer P/E valuation and triangulation | [labs/lab-08](labs/lab-08) |
 | 09 | Asbury Automotive (ABG) | Pro forma build and FCFE valuation | [labs/lab-09](labs/lab-09) |
 | 10 | Palantir (PLTR) | Own-company pro forma and FCFE valuation | [labs/lab-10](labs/lab-10) |
+| 11 | Palantir (PLTR) | Pro-forma sensitivity: operating drivers | [labs/lab-11](labs/lab-11) |
 
 Palantir research used across labs is in [research/pltr](research/pltr).
