@@ -90,6 +90,7 @@ Base vs. higher revenue growth, computed in Lab 11 and shown live from `pltr_sen
 - **Causal path:** input → revenue compounds on a bigger base each year → gross profit → operating income (opex scales partly with gross profit and revenue) → net income → FCFE. Working capital partly offsets: receivables +$1,680.6M against contract liabilities +$1,391.6M in 2030. Then SBC is subtracted to get valuation FCFE, and the larger 2030 cash flow feeds the terminal value.
 - **Ranking:** over the tested ranges, revenue growth ($20.70/share span) beats gross margin ($3.00 span). The ranges aren't equal, though: ±10pp on five yearly inputs vs. ±3pp on one margin. So the ranking describes my ranges, not a universal law.
 - **What it doesn't establish:** these are conditional scenarios, not probabilities. Even the higher-growth case ($46.27) is about a quarter of the $192.59 price.
+- **Impact vs. uncertainty:** the $20.70 span measures *impact*: how much value moves if growth lands at either edge of my range. It says nothing about how *likely* those edges are. Growth is also the more uncertain input (2025 growth was 56%, Q2 2026 was 93%, my 2030 base is 20%), but that's a separate judgment from the table, not something the table proves.
 - **Prediction miss:** I predicted a $5–6B span and got $7.8B, because the change compounds.
 
 ### 6. Interpretation (~2 min)
@@ -173,10 +174,13 @@ _Finalize after both rounds. The candidates below are what I expect going in. Up
 
 ## Files
 
-- [This write-up](lab-12-writeup.md)
-- [Lab 11 sensitivity code](../lab-11/pltr_sensitivity.py) and [writeup](../lab-11/lab-11-writeup.md)
-- [Lab 10 pro forma code](../lab-10/pltr_proforma.py) and [writeup](../lab-10/lab-10-writeup.md)
-- [Lab 08 peer P/E](../lab-08/lab08_palantir_pe_triangulation.md) and [code](../lab-08/lab08_palantir_comps.py)
-- [Lab 06 DCF](../lab-06/lab06_dcf.md) and [code](../lab-06/dcf.py)
-- [Lab 04 research report](../lab-04/Lab04_Company_Research_Report_Palantir.md)
-- [Lab 03 selection](../lab-03/Project1_EditionA_Palantir.md)
+GitHub links for checkout:
+
+- [lab-12-writeup.md](https://github.com/pierceappleton/FIN439-Labs/blob/main/labs/lab-12/lab-12-writeup.md)
+- Lab 11: [pltr_sensitivity.py](https://github.com/pierceappleton/FIN439-Labs/blob/main/labs/lab-11/pltr_sensitivity.py), [lab-11-writeup.md](https://github.com/pierceappleton/FIN439-Labs/blob/main/labs/lab-11/lab-11-writeup.md)
+- Lab 10: [pltr_proforma.py](https://github.com/pierceappleton/FIN439-Labs/blob/main/labs/lab-10/pltr_proforma.py), [lab-10-writeup.md](https://github.com/pierceappleton/FIN439-Labs/blob/main/labs/lab-10/lab-10-writeup.md)
+- Lab 08: [lab08_palantir_comps.py](https://github.com/pierceappleton/FIN439-Labs/blob/main/labs/lab-08/lab08_palantir_comps.py), [lab08_palantir_pe_triangulation.md](https://github.com/pierceappleton/FIN439-Labs/blob/main/labs/lab-08/lab08_palantir_pe_triangulation.md)
+- Lab 06: [dcf.py](https://github.com/pierceappleton/FIN439-Labs/blob/main/labs/lab-06/dcf.py), [lab06_dcf.md](https://github.com/pierceappleton/FIN439-Labs/blob/main/labs/lab-06/lab06_dcf.md)
+- Lab 04: [Lab04_Company_Research_Report_Palantir.md](https://github.com/pierceappleton/FIN439-Labs/blob/main/labs/lab-04/Lab04_Company_Research_Report_Palantir.md)
+- Lab 03: [Project1_EditionA_Palantir.md](https://github.com/pierceappleton/FIN439-Labs/blob/main/labs/lab-03/Project1_EditionA_Palantir.md)
+- Research: [Palantir_2026-09-03_report.md](https://github.com/pierceappleton/FIN439-Labs/blob/main/research/pltr/Palantir_2026-09-03_report.md), [sources.md](https://github.com/pierceappleton/FIN439-Labs/blob/main/research/pltr/sources.md)
