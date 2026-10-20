@@ -14,5 +14,7 @@ Lab work for FIN439 at Purdue University, Fall 2026.
 | 10 | Palantir (PLTR) | Own-company pro forma and FCFE valuation | [labs/lab-10](labs/lab-10) |
 | 11 | Palantir (PLTR) | Pro-forma sensitivity: operating drivers | [labs/lab-11](labs/lab-11) |
 | 12 | Palantir (PLTR) | Full-analysis presentation and partner review | [labs/lab-12](labs/lab-12) |
+| 13 | Meridian Foundation | Mandate rules, checker and adversarial candidate | [labs/lab-13](labs/lab-13) |
+| 14 | Meridian Foundation | Portfolio baselines and covariance risk engine | [labs/lab-14](labs/lab-14) |
 
 Palantir research used across labs is in [research/pltr](research/pltr).

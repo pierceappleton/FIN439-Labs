@@ -1,0 +1,34 @@
+[
+  {
+    "ticker": "BIL",
+    "fund_name": "State Street SPDR Bloomberg 1-3 Month T-Bill ETF",
+    "source": "https://query1.finance.yahoo.com/v8/finance/chart/BIL?period1=1633046400&period2=1790812800&interval=1mo&events=div%2Csplits",
+    "download_date": "2026-10-20",
+    "field": "indicators.adjclose[0].adjclose",
+    "observations": 60
+  },
+  {
+    "ticker": "IEF",
+    "fund_name": "iShares 7-10 Year Treasury Bond ETF",
+    "source": "https://query1.finance.yahoo.com/v8/finance/chart/IEF?period1=1633046400&period2=1790812800&interval=1mo&events=div%2Csplits",
+    "download_date": "2026-10-20",
+    "field": "indicators.adjclose[0].adjclose",
+    "observations": 60
+  },
+  {
+    "ticker": "LQD",
+    "fund_name": "iShares iBoxx $ Investment Grade Corporate Bond ETF",
+    "source": "https://query1.finance.yahoo.com/v8/finance/chart/LQD?period1=1633046400&period2=1790812800&interval=1mo&events=div%2Csplits",
+    "download_date": "2026-10-20",
+    "field": "indicators.adjclose[0].adjclose",
+    "observations": 60
+  },
+  {
+    "ticker": "VT",
+    "fund_name": "Vanguard Total World Stock Index Fund ETF Shares",
+    "source": "https://query1.finance.yahoo.com/v8/finance/chart/VT?period1=1633046400&period2=1790812800&interval=1mo&events=div%2Csplits",
+    "download_date": "2026-10-20",
+    "field": "indicators.adjclose[0].adjclose",
+    "observations": 60
+  }
+]
