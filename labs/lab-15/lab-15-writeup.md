@@ -8,7 +8,7 @@ Which mix carries the least risk while meeting the mandate, and does it survive 
 
 **Pilot the all-month mix of 60% BIL and 40% VT as a Project 2 starting allocation.** The last-36-month estimate instead chooses 85% BIL and 15% VT, a **25-percentage-point** shift. Before adoption, require forward-looking return estimates supported independently of this sample, an explicit cost allowance for the net objective, and a defined loss-risk measure and breach response from the client. A change in those assumptions or a failure to meet the unchanged objective would trigger a new allocation review.
 
-The code and calculations are complete. The stress test and code explanation below are written exercises; they do not document a live partner exchange or a completed Brightspace quiz. The paper drawing and no-AI explain-back remain in-person activities.
+The partner-exercise notes below record my mandate explanation, paper drawing, code discussion and partner attack. Brightspace quiz completion is separate and is not recorded here.
 
 ## Run the app
 
@@ -73,16 +73,40 @@ The full price window is October 2021–September 2026; its first return is Nove
 
 The shorter sample assigns VT a much higher return estimate and lower volatility. Less equity is then needed to reach the objective, allowing more BIL and producing a much lower estimated portfolio volatility. This is evidence of sensitivity to sample choice, not proof that the newer allocation has lower future risk.
 
-## Stress test — one-point reduction in the equity estimate
+## Partner attack — one-point reduction in the equity estimate
 
-Attack: distrust VT's full-sample 11.0502% annual arithmetic estimate and reduce it by one percentage point to 10.0502%, holding volatilities, correlations and mandate settings fixed.
+My partner distrusted VT's full-sample 11.05% annual arithmetic return estimate as a forecast. Using the saved Project 2 prices on all months, they reduced it to 10.05%, holding volatilities, correlations, the 6.5% objective, the 3% reserve minimum and BIL/IEF eligibility fixed.
 
 | Run | BIL / IEF / LQD / VT (%) | Return estimate (%) | Volatility (%) | Reserve (%) |
 |---|---|---:|---:|---:|
 | Full-sample baseline | 60 / 0 / 0 / 40 | 6.61 | 6.05 | 60 |
 | VT estimate −1 percentage point | 55 / 0 / 0 / 45 | 6.53 | 6.79 | 55 |
 
-Two-sentence response: Reducing VT's estimate by one point forces the search to raise VT from 40% to 45% to keep the 6.5% objective, increasing estimated volatility from 6.05% to 6.79%. I would keep the allocation in pilot review until independent expected-return evidence and a cost allowance support the target, because the sample-window change already moves 25 points of capital.
+Largest weight change: **5 percentage points**, from BIL into VT.
+
+My two-sentence response: Lowering VT's estimate by one point made the optimizer hold more VT, going from 40% to 45%, because the 6.5% floor stayed fixed, and that pushed volatility up from 6.05% to 6.79%. The allocation moved less than I expected, but it depends on trusting VT's historical return, so I would not adopt it until I have a forward-looking return estimate for VT.
+
+## Partner exercises and reflection
+
+### Mandate explanation without a screen
+
+My universe has four ETFs: BIL holds short-term Treasury bills and serves as the cash reserve; IEF holds 7–10 year Treasuries; LQD holds investment-grade corporate bonds; VT holds global stocks. The objective is 6.5% nominal annual expected return, from a 2.5% CPI estimate plus the foundation's 4% real-return objective, before costs. At least 3% must be in BIL and IEF combined, with long-only weights totaling 100%.
+
+My partner wrote down: BIL, IEF, LQD, VT; 6.5% objective; at least 3% in BIL or IEF. Then we swapped and I wrote theirs down.
+
+### Paper drawing
+
+I drew a chain of boxes: monthly adjusted prices → monthly simple returns → annual return estimates and covariance → every fully invested mix in 5-point steps → reject mixes below the return or reserve minimum → compute volatility for the survivors → keep the lowest. If nothing survives, the output is “no mix meets the objective.” I walked my partner through the drawing from left to right. The Mermaid chart below documents the same calculation path, with input validation and the app comparison included.
+
+### Decision discussion
+
+The window change moves 25 points from VT to BIL. In these results, the search finds the smallest grid allocation to VT that clears the return floor; BIL has very low volatility, while IEF and LQD have lower full-sample return estimates than BIL and higher standalone volatilities. Their absence is a result of the covariance-based search, rather than a general rule that higher-volatility bonds cannot help a portfolio.
+
+The full sample includes the 2022 selloff: adjusted prices in the saved file show VT down 11.76% and IEF down 18.50% from October 2021 to October 2023. With the full-sample BIL and VT estimates, a two-asset mix needs about 38.5% VT to reach 6.5%, so the grid selects 40%. With the last-36-month estimates, it needs about 13.4%, so the grid selects 15%. These continuous thresholds explain the grid results but do not replace the search across all four assets.
+
+The shorter window changes the observations used to estimate the same funds: VT's annual arithmetic estimate rises from 11.05% to 20.25%, while BIL's rises from 3.66% to 4.37%. These sample differences do not establish future returns or a single cause for the change.
+
+Before adoption I would need forward-looking estimates for both VT and cash, supported by inputs such as current Treasury-bill yields and an equity-risk-premium assumption; tests on longer and different windows; an explicit cost allowance for the net objective; and a client-approved loss-risk measure and breach response. Until then, 60% BIL / 40% VT remains a pilot starting point.
 
 ## Engine flowchart
 
@@ -116,7 +140,7 @@ flowchart TD
 
 For each mix, `expected_return` computes the weighted return estimate; the reserve sum counts only eligible names. `continue` discards any allocation missing either minimum. A tolerance of 1e-12 prevents binary floating-point error from rejecting an exact boundary. `portfolio_volatility` applies the full covariance formula only to feasible candidates. The final `if` replaces `best` when risk is lower, retaining the first mix on an exact risk tie. The function returns the best record or `None`. This solves the discrete grid problem, not the unrestricted continuous optimum; a 3% reserve minimum effectively requires at least 5% eligible holdings on this grid.
 
-Code question: **Why can a lower equity return estimate result in more equity?** Because the return floor stays fixed: the old allocation becomes infeasible, and the optimizer must add the high-return asset even though its estimate has fallen. Minimum volatility is evaluated only among the allocations still meeting the floor.
+My partner asked: **Why can a lower stock return estimate push the portfolio into more stocks?** The return floor does not move. If VT is expected to earn less, I need more of it to reach 6.5%, so the old mix fails the check and the search moves to a heavier-VT mix. Minimum volatility is evaluated only among allocations that still meet the floor.
 
 ## Estimation risk and self-check
 
