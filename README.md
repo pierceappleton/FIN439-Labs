@@ -16,5 +16,6 @@ Lab work for FIN439 at Purdue University, Fall 2026.
 | 12 | Palantir (PLTR) | Full-analysis presentation and partner review | [labs/lab-12](labs/lab-12) |
 | 13 | Meridian Foundation | Mandate rules, checker and adversarial candidate | [labs/lab-13](labs/lab-13) |
 | 14 | Meridian Foundation | Portfolio baselines and covariance risk engine | [labs/lab-14](labs/lab-14) |
+| 15 | Meridian / Project 2 funds | Streamlit optimizer, estimation risk and stability decision | [labs/lab-15](labs/lab-15/lab-15-writeup.md) |
 
 Palantir research used across labs is in [research/pltr](research/pltr).
