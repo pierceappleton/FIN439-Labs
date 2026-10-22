@@ -75,12 +75,15 @@ class EngineChecks(unittest.TestCase):
         self.assertNotEqual(original, changed)
         try:
             engine_file.write_text(changed, encoding="utf-8")
+            # Equal-length edits within one second can reuse timestamp-based bytecode.
+            Path(p.__cached__).unlink(missing_ok=True)
             at = AppTest.from_file(str(Path(__file__).resolve().with_name("app.py")), default_timeout=30).run()
             self.assertFalse(at.exception)
             self.assertEqual(at.metric[0].value, "6.52%")
             self.assertEqual(at.metric[1].value, "9.73%")
         finally:
             engine_file.write_text(original, encoding="utf-8")
+            Path(p.__cached__).unlink(missing_ok=True)
             import importlib
             importlib.reload(p)
 
