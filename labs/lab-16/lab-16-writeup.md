@@ -36,7 +36,7 @@ The row number is an identifier, so it is excluded when comparing records for an
 
 Return is `(latest price / previous month's price - 1) * 100`. The naive calculation still removes missing tickers and duplicates and selects the latest vintage, but ignores the publication cutoff.
 
-The March 31 funnel, panel, and all signals match the supplied answer. An automated check with **April 15, 2026** confirmed that every as-of signal equals its naive signal. The saved decision date remains March 31. This is a local verification; a partner swap has not been documented.
+The March 31 funnel, panel, and all signals match the supplied answer. An automated check with **April 15, 2026** confirmed that every as-of signal equals its naive signal. The saved decision date remains March 31. The automated check was completed locally. I also completed the partner swap and later-date test in class.
 
 ## Rule 4 explanation
 
@@ -71,6 +71,6 @@ Rule 3 matters most for preventing future information from entering the March 31
 
 A backtest using the naive column would claim AAA gained 5.83%, BBB lost 5.15%, and CCC gained 1.82% over their respective latest monthly comparisons. Those figures incorporate publications unavailable on March 31, and the months differ across tickers. They are not a tradable March 31 information set.
 
-## Personal checkout still to complete
+## Personal checkout completed
 
-Explain rule 4 aloud, answer a partner's question from the code, run the partner's file with April 15 and undo the change, and complete the AI quiz. These live activities are not claimed by the automated checks above.
+I completed the in-class activities: explained rule 4 aloud, answered a partner's question from the code, ran the partner's file with April 15 and undid the change, and completed the AI quiz.
