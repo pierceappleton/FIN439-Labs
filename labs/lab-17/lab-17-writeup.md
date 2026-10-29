@@ -32,7 +32,7 @@ GS10 is the selected monthly series. The earlier prework choice could not be rec
 - **Source:** Board of Governors of the Federal Reserve System, H.15 Selected Interest Rates, via [FRED GS10](https://fred.stlouisfed.org/series/GS10) and [ALFRED GS10](https://alfred.stlouisfed.org/series?seid=GS10).
 - **Measure:** monthly average of business-day market yields on U.S. Treasury securities at 10-year constant maturity, quoted on an investment basis.
 - **Units and frequency:** percent per year, monthly, not seasonally adjusted.
-- **Publication lag:** after the month ends. In this example, the FRED page reports September 2026 updated October 1 at 3:16 p.m. Central; the September 30 ALFRED vintage ended in August, whereas the October 29 vintage included September. Actual release dates and times vary; a date alone cannot establish availability before an intraday trade.
+- **Publication lag:** after the month ends. The September 30 ALFRED vintage ended in August, whereas the October 29 vintage included September. FRED’s page-level “Updated” stamp is not an observation-specific publication timestamp. Actual release dates and times vary; a date alone cannot establish availability before an intraday trade.
 - **Revisions:** FRED states that all data are subject to revision. Comparing the September 30 and current snapshots found **zero** changes on shared nonmissing dates; that observation does not prove revisions are impossible in other periods.
 - **Download date:** October 29, 2026. Current data and historical snapshots were downloaded from FRED and ALFRED by the app functions; the source page was also viewed on that date.
 
@@ -46,10 +46,10 @@ The three values were checked against the FRED page and personally confirmed by 
 
 ### Fresh eyes — partner review with Rusheel
 
-Rusheel and I discussed these questions together:
+Rusheel and I discussed these questions together. Rusheel identified **publication date** as the field he trusted least. He noticed that a FRED page can show an old observation alongside a much later “Updated” stamp, so that stamp describes a page or series refresh rather than the publication time of that individual value. Our earlier use of the stamp as direct evidence of a one-month lag was coincidental. The ALFRED vintage comparison supplies the relevant date-level evidence. Units are explicit on FRED (“Percent, Not Seasonally Adjusted”), while zero revisions in this comparison does not prove revisions can never occur.
 
 1. **What does `vintage_date` do, and why does a backtest need it?** It asks ALFRED for the series as it appeared on that date. This helps prevent a backtest from using later revisions or observations that had not yet been published. The date-based snapshot alone does not establish availability at a particular intraday trading time. Look-ahead bias can affect results in either direction.
-2. **Publication-date attack: GS10 labels September as September 1. Why can't we use its September value at the September 30 close?** September 1 labels the measurement period, not the publication date. The September 30 ALFRED snapshot ends with August at 4.68%, while FRED reports the September value of 4.99% was updated October 1 at 3:16 p.m. Central; the September value was therefore not in the September 30 snapshot.
+2. **Publication-date attack: GS10 labels September as September 1. Why can't we use its September value at the September 30 close?** September 1 labels the measurement period, not the publication date. The September 30 ALFRED snapshot ends with August at 4.68%, while the later snapshot includes September at 4.99%. That establishes the September value was absent from the September 30 information set; the FRED “Updated” stamp alone does not establish its release time.
 3. **Does zero revisions between September 30 and October 29 prove GS10 is never revised?** No. It only shows no changed values on common nonmissing dates in that particular comparison. FRED notes that all data are subject to revision; other vintages or dates could differ.
 
 ## Project 2 call
@@ -66,4 +66,4 @@ GS10's monthly value appears after its measurement month: the September 30 snaps
 
 ## Remaining personal checkout
 
-- Complete the Brightspace quiz and submit GitHub links for this writeup and `asof_app.py` after the files are published.
+- Complete the Brightspace quiz and submit GitHub links for this writeup and `asof_app.py` using the published GitHub links.
