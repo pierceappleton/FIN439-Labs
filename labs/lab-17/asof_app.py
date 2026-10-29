@@ -37,11 +37,11 @@ def download_today(series_id):
 
 @st.cache_data(ttl=3600, show_spinner=False)
 def download_asof(series_id, vintage_date):
-    """Retrieve the ALFRED snapshot for the requested vintage, not current FRED."""
+    """Retrieve an ALFRED vintage and its separate local download timestamp."""
     response = requests.get("https://alfred.stlouisfed.org/graph/alfredgraph.csv",
                             params={"id": series_id, "vintage_date": vintage_date.isoformat()},
                             timeout=30)
-    return parse_csv(response), datetime.now()
+    return parse_csv(response), datetime.now()  # Retrieval time, never the historical cutoff.
 
 
 def compare(today, vintage):
@@ -78,7 +78,7 @@ def main():
             continue
         try:
             current, downloaded_current = download_today(series_id)
-            vintage, downloaded_vintage = download_asof(series_id, asof_date)
+            vintage, vintage_downloaded_at = download_asof(series_id, asof_date)
             # A future observation cannot be known on the decision date.
             vintage = vintage[vintage.index <= pd.Timestamp(asof_date)]
             if current.empty:
@@ -96,7 +96,7 @@ def main():
                          "Last measured as known": old_date, "Value as known": old_value,
                          "Last measured today": new_date, "Value today": new_value,
                          "Values after last known": late, "Common dates revised": revised})
-            downloads.append(f"{series_id}: FRED {downloaded_current:%Y-%m-%d %H:%M}; ALFRED {downloaded_vintage:%Y-%m-%d %H:%M}")
+            downloads.append(f"{series_id}: FRED {downloaded_current:%Y-%m-%d %H:%M}; ALFRED {vintage_downloaded_at:%Y-%m-%d %H:%M}")
         except (requests.RequestException, ValueError, pd.errors.ParserError) as exc:
             st.error(f"Could not load {series_id}: {exc}")
     if rows:

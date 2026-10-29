@@ -50,7 +50,8 @@ Rusheel and I discussed these questions together. Rusheel identified **publicati
 
 1. **What does `vintage_date` do, and why does a backtest need it?** It asks ALFRED for the series as it appeared on that date. This helps prevent a backtest from using later revisions or observations that had not yet been published. The date-based snapshot alone does not establish availability at a particular intraday trading time. Look-ahead bias can affect results in either direction.
 2. **Publication-date attack: GS10 labels September as September 1. Why can't we use its September value at the September 30 close?** September 1 labels the measurement period, not the publication date. The September 30 ALFRED snapshot ends with August at 4.68%, while the later snapshot includes September at 4.99%. That establishes the September value was absent from the September 30 information set; the FRED “Updated” stamp alone does not establish its release time.
-3. **Does zero revisions between September 30 and October 29 prove GS10 is never revised?** No. It only shows no changed values on common nonmissing dates in that particular comparison. FRED notes that all data are subject to revision; other vintages or dates could differ.
+3. **Rusheel’s code question: If ALFRED gives the snapshot as of the requested date, why does `download_asof` also return `datetime.now()`?** That second value records when our app downloaded the CSV for its cache and display caption; it is not the historical vintage date. Treating it as the data’s availability date would be a look-ahead error. We clarified the return value and its use in the code so the historical `vintage_date` and retrieval timestamp remain distinct.
+4. **Does zero revisions between September 30 and October 29 prove GS10 is never revised?** No. It only shows no changed values on common nonmissing dates in that particular comparison. FRED notes that all data are subject to revision; other vintages or dates could differ.
 
 ## Project 2 call
 
@@ -58,7 +59,7 @@ Rusheel and I discussed these questions together. Rusheel identified **publicati
 
 ## Explain and reflect
 
-`download_asof` is cached by series ID and vintage date for one hour. It requests the ALFRED CSV with those two parameters, applies a timeout, checks and parses the response, and returns the values and download time. The parser converts observation dates and numerical values, treats `.` as missing, and drops missing values; the app also excludes any observation dated after the as-known date. The vintage date selects a historical snapshot, not a current FRED download.
+`download_asof` is cached by series ID and vintage date for one hour. It requests the ALFRED CSV with those two parameters, applies a timeout, checks and parses the response, and returns the values plus a retrieval timestamp used only in the download caption. The requested vintage date remains the historical information cutoff. The parser converts observation dates and numerical values, treats `.` as missing, and drops missing values; the app also excludes any observation dated after the as-known date. The vintage date selects a historical snapshot, not a current FRED download.
 
 A data card records a series' source, meaning, units, frequency, publication timing, revision behavior, and retrieval date. Measurement date, publication date/time, and vintage together prevent treating a later release or revision as if it were known earlier. “Cleaned the data” does not record those fields or allow another person to reproduce the decision-date information set.
 
